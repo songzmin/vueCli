@@ -1,0 +1,64 @@
+一，vueCli 创建的工程，我们要配置环境的时候一般从这三个方面
+
+	01，vueCli创建的根目录下，也就是与package.json文件同一目录下创建
+		 .env.development 
+
+		 .env.production 
+
+		 vue.config.js
+
+	这三个文件
+
+	在 .env.development的文件内容
+
+		VUE_APP_MOCK=true
+		VUE_APP_VERIFY=true
+		VUE_APP_CACHEUSERNAME=dhsyslogin
+		VUE_APP_CACHEPASSWORD=1q2w3e4r%T6y7u8i9o0p
+		VUE_APP_CACHENOREDIRECT=1
+		VUE_APP_EPISODEID=1
+		VUE_APP_USERID=10211
+		VUE_APP_LOCID=151
+		VUE_APP_WARDID=3
+		VUE_APP_GROUPID=132
+
+	VUE_APP_ 这几个是不可以更改的，必须是固定的，能改的只有  VUE_APP_  后面的内容
+
+
+使用区别：	  当我们启动程序为开发环境时候，就只会加载 .env.development 配置的信息，不会加载 .env.production 
+		  相反，如果我们是生产环境启动，就只会加载 .env.production  配置的信息，不会加载 .env.development
+
+
+	vue.config.js 相关配置
+		module.exports ={
+
+			baseUrl : '/',       ---->根路径
+			outputDir: 'dist'，  --->构建输出目录
+			assestsDir: 'assets',--->静态资源目录(js,css,img,fonts)
+			lintOnSave: 'false', --->是否开启eslint保存检测，有效值为：true || false || error
+			
+			devServer:{
+				open:false   --->默认是否自动开启浏览器
+				host:'localhost’  --->本地主机的一个地址
+				port：8081         --->修改本地的端口号
+				https:false        --->是否启动https协议
+				hotOnly:false      --->是否模块热更新
+				proxy:{
+		
+					'/api':{
+						target:"http://localhost:8000/api"
+						ws:true,
+						changOrigin:true,
+						pathRewrite:{
+							" ^/api ":""
+						}
+					}
+			
+				}
+
+
+
+			}
+
+		}
+
