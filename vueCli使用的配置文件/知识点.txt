@@ -50,7 +50,7 @@
 						ws:true,
 						changOrigin:true,
 						pathRewrite:{
-							" ^/api ":""
+							" ^/api ":"/"
 						}
 					}
 			
@@ -62,3 +62,7 @@
 
 		}
 
+
+
+
+是否首次分床时显示
