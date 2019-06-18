@@ -1,0 +1,21 @@
+
+vue工程当中，使用：
+
+  async created() {
+    this.data = await this.$axios('url');  请求数据
+    console.log("wo shi shou ye");
+  }
+
+的目的是在根组件请求数据的时候不影响后边组件的加载就会用上上面的代码
+
+
+此时子组件要想获取从服务器加载的数据就要使用watch属性
+
+  watch: {
+    message(val) {
+      this.data = val;
+    }
+  }
+
+
+这样就可一拿到数据的值了，实现了异步加载
